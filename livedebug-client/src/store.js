@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from './helpers/axios'
 
+Vue.use(Vuex)
+
 export default new Vuex.Store({
   state: {
     users: '',
@@ -14,42 +16,47 @@ export default new Vuex.Store({
     collections: []
   },
   mutations: {
-    setUsers (state, payload) {
+    setUsers(state, payload) {
       state.users = payload
     },
 
-    setProjects (state, payload) {
-      state.projects = payload
+    setProjects(state, payload) {
+      console.log(payload)
+      state.projects.projects = payload
     },
 
-    setCollections (state, payload) {
+    setCollections(state, payload) {
       state.collections = payload
     },
 
-    cleanCollection (state) {
+    cleanCollection(state) {
       state.collections = []
     }
   },
   actions: {
-    fetchUsers (context) {
+    fetchUsers(context) {
       return axios.get('/users').then(({ data }) => {
+        console.log('masuk')
+        console.log(data, 'ini store')
         context.commit('setUsers', data)
       })
     },
-
-    fetchProject (context, id) {
-      return axios.get(`/projects/${id}`).then(({ data }) => {
-        context.commit('setProjects', { data })
-      })
+    fetchProject(context, id) {
+      return axios
+        .get(`/projects/${id}`)
+        .then(({ data }) => {
+          console.log('masuk ke then')
+          context.commit('setProjects', { data })
+        })
     },
 
-    findCollections (context, query) {
+    findCollections(context, query) {
       return axios.get(`/collections/?q=${query}`).then(({ data }) => {
         context.commit('setCollections', data)
       })
     },
 
-    cleanCollection (context) {
+    cleanCollection(context) {
       context.commit('cleanCollection')
     }
   }

@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  props: [],
+  props: ['covers'],
   computed: {
     coverUrl () {
       return {

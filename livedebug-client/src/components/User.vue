@@ -34,7 +34,7 @@
 
 <script>
 export default {
-  props: ['name', 'occupation', 'stats', 'picture', 'id'],
+  props: ['name', 'key', 'occupation', 'stats', 'picture', 'id'],
 
   methods: {
     showDetail () {

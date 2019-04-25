@@ -21,7 +21,7 @@
       </div>
     </div>
 
-    <routing-view @myFavorite="myFavorite"/>
+    <router-view @myFavorite="myFavorite"/>
   </div>
 </template>
 
@@ -48,16 +48,22 @@ export default {
     },
 
     seeProject (id) {
+      console.log(id)
+      console.log('masuk ke see')
       this.$router.push(`/${id}`)
+      this.$store.dispatch('fetchProject', id)
     },
 
     myFavorite (data) {
+      console.log('lempar my favorite')
       this.$emit('myFavorite', data)
     }
   },
 
   computed: {
     users () {
+      console.log('masukk ke computed')
+
       return this.$store.state.users
     }
   },

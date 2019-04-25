@@ -18,7 +18,7 @@ let verificationCode = '';
 describe('Users', function() {
   describe('POST /register', function() {
 
-    it('should return status code 201 with response body created user', function(done) {
+    it.only('should return status code 201 with response body created user', function(done) {
       let user = {
         email: 'kosasih@mail.com',
         password: 'kosasihberjalankiankemari',
@@ -50,7 +50,7 @@ describe('Users', function() {
        })
     })
 
-    it('should return status code 409 with message "Email has been used"', function(done) {
+    it.only('should return status code 409 with message "Email has been used"', function(done) {
       let user = {
         email: 'kosasih@mail.com',
         password: 'kosasihberjalankiankemari',
@@ -70,7 +70,7 @@ describe('Users', function() {
        })
     })
 
-    it('should return status code 409 with message "Password is required"', function(done) {
+    it.only('should return status code 409 with message "Password is required"', function(done) {
       let user = {
         email: 'johndoe@mail.com',
         password: null,
@@ -92,7 +92,7 @@ describe('Users', function() {
   })
 
   describe('GET /login', function() {
-    it('should return status code 200 with logged in user: token, _id and email', function(done) {
+    it.only('should return status code 200 with logged in user: token, _id and email', function(done) {
       let user = {
         email: 'kosasih@mail.com',
         password: 'kosasihberjalankiankemari',
@@ -103,6 +103,7 @@ describe('Users', function() {
        .get('/login')
        .send(user)
        .end(function(err, res) {
+         console.log(res.body)
          expect(err).to.be.null;
 
          expect(res).to.have.status(200);
@@ -117,7 +118,7 @@ describe('Users', function() {
   })
 
   describe('POST /verify', function() {
-    it('should return status code 200 and update isVerified to true if verificationCode match', function(done) {
+    it.only('should return status code 200 and update isVerified to true if verificationCode match', function(done) {
       let userVerify = {
         email: 'kosasih@mail.com',
         verificationCode: verificationCode

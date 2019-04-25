@@ -5,11 +5,14 @@ const Transaction = require('../models/transaction');
 
 module.exports = {
   authentication: function(req, res, next) {
-    let token = req.header.token;
-
-    if (token) {
+    console.log('masuk ke authentication')
+    
+    let token = req.headers.token;
+    if (!token) {
+      console.log('masuk ke if')
       res.status(401).json({ error: 'You must login to access this endpoint' });
     } else {
+      console.log('masuk ke else')
       let decoded = jwt.verify(token);
       User
        .findOne({

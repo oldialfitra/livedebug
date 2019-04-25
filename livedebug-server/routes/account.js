@@ -6,6 +6,6 @@ const { authentication, authorization } = require('../middlewares/auth');
 
 router.get('/accountNumber', accountController.findAccounts);
 router.delete('/:accountNumber', authorization, accountController.remove);
-router.post('/new', accountController.newAccount);
+router.post('/new',authentication, accountController.newAccount);
 
 module.exports = router

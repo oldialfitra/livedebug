@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <navigation :counter="this.favorites.length"/>
-    <router-view :myFavorite="myFavorite" @favorites="favorites"/>
+    <router-view :favorites="favorites" @myFavorite="myFavorite"/>
   </div>
 </template>
 

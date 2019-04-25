@@ -33,8 +33,8 @@
 
 <script>
 export default {
-  props: ['counter']
-}
+  props: ["counter"]
+};
 </script>
 
 <style>

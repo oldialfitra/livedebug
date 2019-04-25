@@ -26,9 +26,12 @@ class UserController {
 
   static login(req, res) {
     User
-     .findOne(req.body.email)
+     .findOne({
+       email: req.body.email
+     })
      .then(user => {
        if (user) {
+         console.log(regis.checkPassword(req.body.password, user.password), 'check')
          if (regis.checkPassword(req.body.password, user.password)) {
            let signUser = {
               id: user._id,
@@ -57,7 +60,9 @@ class UserController {
        email: req.body.email,
        verificationCode: req.body.verificationCode
      }, {
-       $set: { isVerified: true }
+        isVerified: true 
+     }, {
+       new: true
      })
      .then(user => {
        if(user) {

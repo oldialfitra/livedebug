@@ -66,7 +66,7 @@ after(done => {
 
 describe('Account', function() {
   describe('POST /accounts/new ', function() {
-    it('should return status code 201 with response body created account', function(done) {
+    it.only('should return status code 201 with response body created account', function(done) {
       let account = {
         balance: 350000
       }
@@ -77,6 +77,7 @@ describe('Account', function() {
        .send(account)
        .set('token', token)
        .end(function(err, res) {
+         console.log(res.body)
          expect(err).to.be.null;
 
          expect(res).to.have.status(201);
@@ -94,7 +95,7 @@ describe('Account', function() {
        })
     })
 
-    it('should return status code 201 with response body created account and balance 500000', function(done) {
+    it.only('should return status code 201 with response body created account and balance 500000', function(done) {
 
       chai
        .request(app)
@@ -121,7 +122,7 @@ describe('Account', function() {
   })
 
   describe('GET /accounts/:accountNumber', function() {
-    it('should return status 200 and get all data reference', function(done) {
+    it.only('should return status 200 and get all data reference', function(done) {
       chai
        .request(app)
        .get(`/accounts/${accountNumber_1}`)
@@ -142,7 +143,7 @@ describe('Account', function() {
   })
 
   describe('DELETE /accounts/:accountNumber', function() {
-    it('should return status 200 and accountNumber should be deleted', function(done) {
+    it.only('should return status 200 and accountNumber should be deleted', function(done) {
       chai
        .request(app)
        .delete(`/accounts/${accountNumber_1}`)
@@ -160,7 +161,7 @@ describe('Account', function() {
        })
     })
 
-    it('should return status 403 and response error Forbidden', function(done) {
+    it.only('should return status 403 and response error Forbidden', function(done) {
       chai
        .request(app)
        .delete(`/accounts/${accountNumber_2}`)

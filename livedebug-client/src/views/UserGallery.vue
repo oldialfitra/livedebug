@@ -51,6 +51,7 @@ export default {
 
     addTomyFavorite (index) {
       this.addedIndex.push(index)
+      console.log(this.projects[index], 'ini index')
       this.$emit('myFavorite', this.projects[index])
     }
   },
@@ -75,7 +76,8 @@ export default {
   },
 
   mounted () {
-    this.fetchProject(this.$route.params.behanceId).then(
+    this.fetchProject(this.$route.params.behanceId)
+    .then(
       _ => (this.isLoading = false)
     )
   }

@@ -22,6 +22,7 @@ class TransactionController {
       res.status('201').json(trans);
     })
     .catch(err => {
+      console.log(err)
       if (err.message) {
         res.status(400).json({ err: err.message });
       } else {
